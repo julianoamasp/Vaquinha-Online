@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Hello Spring Boot</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Festa vaquinha!</h1>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Alimento</th>
+						<th>Nome</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="usuario : ${usuarios}">
+						
+						<td th:text="${usuario.nome}"></td>
+						
+						<td th:text="${usuario.alimento}"></td>
+					</tr>
+				</tbody>
+			</table><br>
+			
+			<form method="post" th:object="${usuario}" th:action="@{/listartodos}">
+			Alimento
+				<input type="text" th:field="*{nome}" />
+				Nome
+				<input type="text" th:field="*{alimento}" />
+				<input type="submit" value="cadastrar" />
+			</form>
+			
+		</div>
+	</div>
+</body>
+</html>
